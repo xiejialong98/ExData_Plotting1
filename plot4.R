@@ -15,6 +15,9 @@ required_data$Sub_metering_2 <- as.numeric(as.character(required_data$Sub_meteri
 required_data$Sub_metering_3 <- as.numeric(as.character(required_data$Sub_metering_3))
 GRP <- as.numeric(as.character(required_data$Global_reactive_power))
                   
+## Saving to file
+png("plot4.png", width=480, height=480)
+
 # plot
 par(mfrow = c(2,2))
 plot(required_data$Datetime, GAP, type = "l", xlab = "",ylab = "Global Active Power (kilowatts)") # at (1,1)
@@ -22,9 +25,8 @@ plot(required_data$Datetime, VOLT, type = "l", xlab = "datetime", ylab = "Voltag
 plot(required_data$Datetime, required_data$Sub_metering_1, type = "l", ylab = "Energy sub metering", xlab = "") # at (2,1)
 lines(required_data$Datetime, required_data$Sub_metering_2, col ="red")
 lines(required_data$Datetime, required_data$Sub_metering_3, col ="blue")
-legend("topright", col=c("black", "red", "blue"), lty=1, lwd=2, bty = "n", cex = 0.75, legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+legend("topright", col=c("black", "red", "blue"), lty=1, lwd=2, bty = "n", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
 plot(required_data$Datetime, GRP, type = "l", xlab = "datetime", ylab = "Global_reactive_power")
 
-## Saving to file
-dev.copy(png, file="plot4.png", height=480, width=480)
+
 dev.off()
